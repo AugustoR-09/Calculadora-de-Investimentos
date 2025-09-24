@@ -1,41 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora de investimentos</title>
-    <link href="src/style.css" rel="stylesheet" />
-  </head>
-  <body class="h-dvh grid grid-cols-3 grid-rows-2">
-    <aside
-      class="bg-emerald-300 p-2 row-span-2 flex flex-col justify-between items-center"
-    >
-      <h1 class="text-2xl font-bold">Calculadora de Investimentos</h1>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Calculadora de investimentos</title>
+      <link href="src/style.css" rel="stylesheet" />
+   </head>
+   <body class="h-dvh grid grid-cols-3 grid-rows-2">
+      <aside
+         class="bg-emerald-300 p-2 row-span-2 flex flex-col justify-between items-center"
+      >
+         <h1 class="text-2xl font-bold">Calculadora de Investimentos</h1>
 
-      <form id="myForm" class="w-full flex flex-col gap-2">
-        <label for="returnRate">Rentabilidade</label>
-        <div class="w-full flex">
-          <input type="text" class="1/6 bg-white p-0.8" value="R$" disabled />
-          <input
-            type="text"
-            class="1/2 bg-white p-0.8"
-            name="returnRate"
-            id="returnRate"
-          />
-          <select
-            name="evaluationPeriod"
-            id="evaluationPeriod"
-            class="1/3 bg-white p-0.8 rounded-r-lg text-center"
-          >
-            <option value="monthly">Mensal</option>
-            <option value="yearly">Anual</option>
-          </select>
-        </div>
-      </form>
-      <div>
-        <button>Calcular</button>
-        <button>Limpar</button>
-      </div>
-    </aside>
-  </body>
+         <form id="myForm" class="w-full">
+            <div class="w-full flex flex-col px-6 py-2">
+               <label for="initialInvestiment" class="font-bold text-gray-700"
+                  >Investimento Inicial</label
+               >
+               <div class="w-full flex">
+                  <input
+                     type="text"
+                     class="w-1/6 bg-emerald-200 p-0.8 rounded-l-lg text-center"
+                     value="R$"
+                     disabled
+                  />
+                  <input
+                     type="text"
+                     class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
+                     name="initialInvestiment"
+                     id="initialInvestiment"
+                     placeholder="0.00"
+                  />
+               </div>
+            </div>
+
+            <div class="w-full flex flex-col px-6 py-2">
+               <label
+                  for="additionalContributions"
+                  class="font-bold text-gray-700"
+                  >Aportes adicionais</label
+               >
+               <div class="w-full flex">
+                  <input
+                     type="text"
+                     class="w-1/6 bg-emerald-200 p-0.8 rounded-l-lg text-center"
+                     value="R$"
+                     disabled
+                  />
+                  <input
+                     type="text"
+                     class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
+                     name="additionalContributions"
+                     id="additionalContributions"
+                     placeholder="0.00"
+                  />
+               </div>
+            </div>
+
+            <div class="w-full flex flex-col px-6 py-2">
+               <label for="time" class="font-bold text-gray-700">Prazo</label>
+               <div class="w-full flex">
+                  <input
+                     type="text"
+                     class="w-2/3 bg-white py-0.8 px-2 rounded-l-lg"
+                     name="time"
+                     id="time"
+                  />
+                  <select
+                     id="evaluationPeriod"
+                     class="w-1/3 bg-white p-0.8 rounded-r-lg border-l-2 border-emerald-600 text-center hover:bg-emerald-950 hover:text-slate-200 cursor-pointer"
+                  >
+                     <option value="monthly">Mensal</option>
+                     <option value="yearly">Anual</option>
+                  </select>
+               </div>
+            </div>
+
+            <div class="w-full flex flex-col px-6 py-2">
+               <label for="returnRate" class="font-bold text-gray-700"
+                  >Rentabilidade</label
+               >
+               <div class="w-full flex">
+                  <input
+                     type="text"
+                     class="w-1/6 bg-emerald-200 p-0.8 rounded-l-lg text-center"
+                     value="%"
+                     disabled
+                  />
+                  <input
+                     type="text"
+                     class="w-1/2 bg-white py-0.8 px-2"
+                     name="returnRate"
+                     id="returnRate"
+                     placeholder="0%"
+                  />
+                  <select
+                     id="evaluationPeriod"
+                     class="w-1/3 bg-white p-0.8 rounded-r-lg border-l-2 border-emerald-600 text-center hover:bg-emerald-950 hover:text-slate-200 cursor-pointer"
+                  >
+                     <option value="monthly">Mensal</option>
+                     <option value="yearly">Anual</option>
+                  </select>
+               </div>
+            </div>
+
+            <div class="w-full flex flex-col px-6 py-2">
+               <label for="profitTax" class="font-bold text-gray-700"
+                  >Impostos sobre o lucro</label
+               >
+               <div class="w-full flex">
+                  <input
+                     type="text"
+                     class="w-1/6 bg-emerald-200 p-0.8 rounded-l-lg text-center"
+                     value="%"
+                     disabled
+                  />
+                  <input
+                     type="text"
+                     class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
+                     name="profitTax"
+                     id="profitTax"
+                     placeholder="0%"
+                  />
+               </div>
+            </div>
+         </form>
+         <div class="w-full flex grid grid-cols-2 gap-2 p-3">
+            <button
+               id="calculateButton"
+               class="w-full font-bold py-1.5 cursor-pointer bg-emerald-950 text-slate-200 rounded-lg"
+            >
+               Calcular
+            </button>
+            <button
+               id="cleanButton"
+               class="w-full font-bold py-1.5 cursor-pointer"
+            >
+               Limpar
+            </button>
+         </div>
+      </aside>
+   </body>
 </html>
