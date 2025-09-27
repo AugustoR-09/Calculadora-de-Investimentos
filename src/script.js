@@ -1,6 +1,12 @@
 import { generateReturns } from "./investmentGoals.js";
+import Chart from "chart.js/auto";
+
+const finalDistribution = document.getElementById("finalDistribution");
+const progression = document.getElementById("progression");
 const form = document.getElementById("myForm");
 const clearButton = document.getElementById("clearButton");
+
+const formatCurrency = (value) => value.toFixed(2);
 
 function renderProgression(evt) {
 	evt.preventDefault();
@@ -26,7 +32,53 @@ function renderProgression(evt) {
 		returnRatePeriod
 	);
 
-	alert("Executando");
+	const finalInvestimentObject = returnsArray[returnsArray.length - 1];
+
+	new Chart(finalDistribution, {
+		type: "doughnut",
+		data: {
+			labels: ["Total investido", "Rendimento", "Imposto"],
+			datasets: [
+				{
+					data: [
+						formatCurrency(finalInvestimentObject.investedAmount),
+						formatCurrency(
+							finalInvestimentObject.totalInterestReturns * (1 - profitTax / 100)
+						),
+						formatCurrency(finalInvestimentObject.totalInterestReturns * (profitTax / 100)),
+					],
+					backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+					hoverOffset: 4,
+				},
+			],
+		},
+	});
+
+	new Chart(progression, {
+		type: "bar",
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true,
+				},
+			},
+		},
+		data: {
+			labels: returnsArray.map((item) => item.month),
+			datasets: [
+				{
+					label: "Total investido",
+					data: returnsArray.map((item) => formatCurrency(item.investedAmount)),
+					backgroundColor: "rgb(255, 99, 132)",
+				},
+				{
+					label: "Retorno do investimento",
+					data: returnsArray.map((item) => formatCurrency(item.totalInterestReturns)),
+					backgroundColor: "rgb(54, 162, 235)",
+				},
+			],
+		},
+	});
 }
 
 function clearForm() {

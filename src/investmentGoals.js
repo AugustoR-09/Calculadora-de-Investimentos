@@ -10,10 +10,6 @@ export function generateReturns(
 	returnRate = 0,
 	returnTimeFrame = "monthly"
 ) {
-	// if (timeHorizon <= 0 || startingAmount <= 0) {
-	//    throw new Error("Investimento inicial e prazo devem ser preenchidos com valores positivos");
-	// }
-
 	const finalReturnRate =
 		returnTimeFrame === "monthly"
 			? 1 + returnRate / 100
@@ -35,7 +31,7 @@ export function generateReturns(
 		const totalAmount =
 			returnsArray[timeReference - 1].totalAmount * finalReturnRate + monthlyContribution;
 
-		const interestReturns = returnsArray[timeReference - 1].totalAmount * finalReturnRate;
+		const interestReturns = returnsArray[timeReference - 1].totalAmount * (finalReturnRate - 1);
 
 		const investedAmount = startingAmount + monthlyContribution * timeReference;
 

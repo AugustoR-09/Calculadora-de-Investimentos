@@ -6,8 +6,8 @@
 		<title>Calculadora de investimentos</title>
 		<link href="/style.css" rel="stylesheet" />
 	</head>
-	<body class="h-dvh grid grid-cols-3 grid-rows-2">
-		<aside class="bg-emerald-300 p-2 row-span-2 flex flex-col justify-between items-center">
+	<body class="h-dvh grid grid-cols-3 grid">
+		<aside class="bg-emerald-300 p-2 flex flex-col justify-between items-center">
 			<h1 class="text-2xl font-bold">Calculadora de Investimentos</h1>
 
 			<form id="myForm" class="w-full">
@@ -23,7 +23,7 @@
 							disabled
 						/>
 						<input
-							type="number"
+							type="text"
 							class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
 							id="initialInvestiment"
 							placeholder="0.00"
@@ -44,7 +44,7 @@
 							disabled
 						/>
 						<input
-							type="number"
+							type="text"
 							class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
 							id="additionalContributions"
 							placeholder="0.00"
@@ -56,7 +56,7 @@
 					<label for="timeAmount" class="font-bold text-gray-700">Prazo</label>
 					<div class="w-full flex">
 						<input
-							type="number"
+							type="text"
 							class="w-2/3 bg-white py-0.8 px-2 rounded-l-lg"
 							id="timeAmount"
 							required
@@ -81,7 +81,7 @@
 							disabled
 						/>
 						<input
-							type="number"
+							type="text"
 							class="w-1/2 bg-white py-0.8 px-2"
 							name="returnRate"
 							id="returnRate"
@@ -108,7 +108,7 @@
 							disabled
 						/>
 						<input
-							type="number"
+							type="text"
 							class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
 							id="profitTax"
 							placeholder="0%"
@@ -133,6 +133,18 @@
 				</button>
 			</div>
 		</aside>
+		<main class="col-span-2 w-full">
+			<section id="chartsContainer">
+				<div class="h-[36dvh]">
+					<h2>Resultado Final</h2>
+					<canvas id="finalDistribution"></canvas>
+				</div>
+				<div class="h-[56dvh]">
+					<h2>Progressão</h2>
+					<canvas id="progression"></canvas>
+				</div>
+			</section>
+		</main>
 		<script type="module" src="src/script.js"></script>
 	</body>
 </html>
