@@ -5,11 +5,16 @@ const finalDistribution = document.getElementById("finalDistribution");
 const progression = document.getElementById("progression");
 const form = document.getElementById("myForm");
 const clearButton = document.getElementById("clearButton");
+let resultsChart = {};
+let progressionChart = {};
 
-const formatCurrency = (value) => value.toFixed(2);
+function formatCurrency(value) {
+	return value.toFixed(2);
+}
 
 function renderProgression(evt) {
 	evt.preventDefault();
+	resetCharts();
 
 	if (document.querySelector(".error")) {
 		return;
@@ -34,8 +39,8 @@ function renderProgression(evt) {
 
 	const finalInvestimentObject = returnsArray[returnsArray.length - 1];
 
-	new Chart(finalDistribution, {
-		type: "doughnut",
+	resultsChart = new Chart(finalDistribution, {
+		type: "pie",
 		data: {
 			labels: ["Total investido", "Rendimento", "Imposto"],
 			datasets: [
@@ -48,13 +53,13 @@ function renderProgression(evt) {
 						formatCurrency(finalInvestimentObject.totalInterestReturns * (profitTax / 100)),
 					],
 					backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
-					hoverOffset: 4,
+					hoverOffset: 3,
 				},
 			],
 		},
 	});
 
-	new Chart(progression, {
+	progressionChart = new Chart(progression, {
 		type: "bar",
 		options: {
 			scales: {
@@ -81,6 +86,13 @@ function renderProgression(evt) {
 	});
 }
 
+function resetCharts() {
+	if (Object.keys(resultsChart).length !== 0 && Object.keys(progressionChart).length !== 0) {
+		resultsChart.destroy();
+		progressionChart.destroy();
+	}
+}
+
 function clearForm() {
 	for (const element of form) {
 		if (element.tagName === "INPUT" && !element.hasAttribute("disabled")) {
@@ -92,6 +104,8 @@ function clearForm() {
 			}
 		}
 	}
+
+	resetCharts();
 }
 
 function validateInput(evt) {
