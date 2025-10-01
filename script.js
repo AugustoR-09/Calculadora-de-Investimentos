@@ -1,12 +1,36 @@
-import { generateReturns } from "./investmentGoals.js";
+import { generateReturns } from "./src/investmentGoals.js";
 import Chart from "chart.js/auto";
 
 const finalDistribution = document.getElementById("finalDistribution");
 const progression = document.getElementById("progression");
 const form = document.getElementById("myForm");
 const clearButton = document.getElementById("clearButton");
+
 let resultsChart = {};
 let progressionChart = {};
+
+const columnsArray = [
+	{
+		columnLabel: "",
+		accessor: "",
+	},
+	{
+		columnLabel: "",
+		accessor: "",
+	},
+	{
+		columnLabel: "",
+		accessor: "",
+	},
+	{
+		columnLabel: "",
+		accessor: "",
+	},
+	{
+		columnLabel: "",
+		accessor: "",
+	},
+];
 
 function formatCurrency(value) {
 	return value.toFixed(2);
