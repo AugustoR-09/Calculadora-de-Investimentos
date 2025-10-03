@@ -1,5 +1,6 @@
 import { generateReturns } from "./src/investmentGoals.js";
 import Chart from "chart.js/auto";
+import { createTable } from "./src/table.js";
 
 const finalDistribution = document.getElementById("finalDistribution");
 const progression = document.getElementById("progression");
@@ -11,29 +12,33 @@ let progressionChart = {};
 
 const columnsArray = [
 	{
-		columnLabel: "",
-		accessor: "",
+		columnLabel: "Mês",
+		accessor: "month",
 	},
 	{
-		columnLabel: "",
-		accessor: "",
+		columnLabel: "TotalInvestido",
+		accessor: "investedAmount",
+		format: (value) => formatCurrency(value),
 	},
 	{
-		columnLabel: "",
-		accessor: "",
+		columnLabel: "Rendimento Mensal",
+		accessor: "interestReturns",
+		format: (value) => formatCurrency(value),
 	},
 	{
-		columnLabel: "",
-		accessor: "",
+		columnLabel: "Rendimento Total",
+		accessor: "totalInterestReturns",
+		format: (value) => formatCurrency(value),
 	},
 	{
-		columnLabel: "",
-		accessor: "",
+		columnLabel: "Quantia total",
+		accessor: "totalAmount",
+		format: (value) => formatCurrency(value),
 	},
 ];
 
 function formatCurrency(value) {
-	return value.toFixed(2);
+	return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
 function renderProgression(evt) {
@@ -63,51 +68,53 @@ function renderProgression(evt) {
 
 	const finalInvestimentObject = returnsArray[returnsArray.length - 1];
 
-	resultsChart = new Chart(finalDistribution, {
-		type: "pie",
-		data: {
-			labels: ["Total investido", "Rendimento", "Imposto"],
-			datasets: [
-				{
-					data: [
-						formatCurrency(finalInvestimentObject.investedAmount),
-						formatCurrency(
-							finalInvestimentObject.totalInterestReturns * (1 - profitTax / 100)
-						),
-						formatCurrency(finalInvestimentObject.totalInterestReturns * (profitTax / 100)),
-					],
-					backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
-					hoverOffset: 3,
-				},
-			],
-		},
-	});
+	// resultsChart = new Chart(finalDistribution, {
+	// 	type: "pie",
+	// 	data: {
+	// 		labels: ["Total investido", "Rendimento", "Imposto"],
+	// 		datasets: [
+	// 			{
+	// 				data: [
+	// 					formatCurrency(finalInvestimentObject.investedAmount),
+	// 					formatCurrency(
+	// 						finalInvestimentObject.totalInterestReturns * (1 - profitTax / 100)
+	// 					),
+	// 					formatCurrency(finalInvestimentObject.totalInterestReturns * (profitTax / 100)),
+	// 				],
+	// 				backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+	// 				hoverOffset: 3,
+	// 			},
+	// 		],
+	// 	},
+	// });
 
-	progressionChart = new Chart(progression, {
-		type: "bar",
-		options: {
-			scales: {
-				y: {
-					beginAtZero: true,
-				},
-			},
-		},
-		data: {
-			labels: returnsArray.map((item) => item.month),
-			datasets: [
-				{
-					label: "Total investido",
-					data: returnsArray.map((item) => formatCurrency(item.investedAmount)),
-					backgroundColor: "rgb(255, 99, 132)",
-				},
-				{
-					label: "Retorno do investimento",
-					data: returnsArray.map((item) => formatCurrency(item.totalInterestReturns)),
-					backgroundColor: "rgb(54, 162, 235)",
-				},
-			],
-		},
-	});
+	// progressionChart = new Chart(progression, {
+	// 	type: "bar",
+	// 	options: {
+	// 		scales: {
+	// 			y: {
+	// 				beginAtZero: true,
+	// 			},
+	// 		},
+	// 	},
+	// 	data: {
+	// 		labels: returnsArray.map((item) => item.month),
+	// 		datasets: [
+	// 			{
+	// 				label: "Total investido",
+	// 				data: returnsArray.map((item) => formatCurrency(item.investedAmount)),
+	// 				backgroundColor: "rgb(255, 99, 132)",
+	// 			},
+	// 			{
+	// 				label: "Retorno do investimento",
+	// 				data: returnsArray.map((item) => formatCurrency(item.totalInterestReturns)),
+	// 				backgroundColor: "rgb(54, 162, 235)",
+	// 			},
+	// 		],
+	// 	},
+	// });
+
+	createTable(columnsArray, returnsArray, "tableResults", formatCurrency);
 }
 
 function resetCharts() {
@@ -158,5 +165,5 @@ for (const element of form) {
 	}
 }
 
-// form.addEventListener("submit", renderProgression);
+form.addEventListener("submit", renderProgression);
 clearButton.addEventListener("click", clearForm);

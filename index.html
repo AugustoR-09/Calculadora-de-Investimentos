@@ -7,7 +7,7 @@
 		<link href="/style.css" rel="stylesheet" />
 	</head>
 	<body class="h-dvh grid grid-cols-3 grid">
-		<aside class="bg-emerald-300 p-2 flex flex-col justify-between items-center">
+		<aside class="h-dvh bg-emerald-300 p-2 flex flex-col justify-between items-center">
 			<h1 class="text-2xl font-bold">Calculadora de Investimentos</h1>
 
 			<form id="myForm" class="w-full">
@@ -144,11 +144,11 @@
 					<canvas id="progression"></canvas>
 				</div>
 			</section> -->
-			<section id="tableContainer" class="h-full">
+			<section id="tableContainer" class="h-full overflow-y-auto">
 				<h2 class="font-bold text-lg text-center">Resultados Mensais</h2>
 				<table id="tableResults" class="w-full max-h-full border border-separate"></table>
 			</section>
 		</main>
-		<script type="module" src="src/script.js"></script>
+		<script type="module" src="script.js"></script>
 	</body>
 </html>
