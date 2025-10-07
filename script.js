@@ -1,3 +1,5 @@
+// Resolvi o problema da tabela com os numeros dando Nan, só falta formatar a tabela
+
 import { generateReturns } from "./src/investmentGoals.js";
 import Chart from "chart.js/auto";
 import { createTable } from "./src/table.js";
@@ -37,6 +39,10 @@ const columnsArray = [
 	},
 ];
 
+function parseCurrency(value) {
+	return Number(value.replace(/[R$\s.%]/g, "").replace(",", "."));
+}
+
 function formatCurrency(value) {
 	return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
@@ -49,13 +55,15 @@ function renderProgression(evt) {
 		return;
 	}
 
-	const startingAmount = Number(document.getElementById("initialInvestiment").value);
-	const aditionalContribution = Number(document.getElementById("additionalContributions").value);
-	const timeAmount = Number(document.getElementById("timeAmount").value);
+	const startingAmount = parseCurrency(document.getElementById("initialInvestiment").value);
+	const aditionalContribution = parseCurrency(
+		document.getElementById("additionalContributions").value
+	);
+	const timeAmount = parseCurrency(document.getElementById("timeAmount").value);
 	const timePeriod = document.getElementById("timeAmountPeriod").value;
-	const returnRate = Number(document.getElementById("returnRate").value);
+	const returnRate = parseCurrency(document.getElementById("returnRate").value);
 	const returnRatePeriod = document.getElementById("returnRatePeriod").value;
-	const profitTax = Number(document.getElementById("profitTax").value);
+	const profitTax = parseCurrency(document.getElementById("profitTax").value);
 
 	const returnsArray = generateReturns(
 		startingAmount,
@@ -114,7 +122,7 @@ function renderProgression(evt) {
 	// 	},
 	// });
 
-	createTable(columnsArray, returnsArray, "tableResults", formatCurrency);
+	createTable(columnsArray, returnsArray, "tableResults");
 }
 
 function resetCharts() {
@@ -140,7 +148,7 @@ function clearForm() {
 }
 
 function validateInput(evt) {
-	const value = evt.target.value.replace(",", ".");
+	const value = evt.target.value.trim().replace(",", ".");
 	const parentElement = evt.target.parentElement;
 	const grandParentElement = parentElement.parentElement;
 

@@ -6,9 +6,9 @@
 		<title>Calculadora de investimentos</title>
 		<link href="/style.css" rel="stylesheet" />
 	</head>
-	<body class="h-dvh grid grid-cols-3 grid">
+	<body class="h-dvh grid grid-cols-3">
 		<aside class="h-dvh bg-emerald-300 p-2 flex flex-col justify-between items-center">
-			<h1 class="text-2xl font-bold">Calculadora de Investimentos</h1>
+			<h1 class="text-2xl font-bold text-center mb-6">Calculadora de Investimentos</h1>
 
 			<form id="myForm" class="w-full">
 				<div class="w-full flex flex-col h-[4.25rem] px-6">
@@ -18,16 +18,17 @@
 					<div class="w-full flex">
 						<input
 							type="text"
-							class="w-1/6 bg-emerald-200 p-0.8 rounded-l-lg text-center"
+							class="w-1/6 bg-emerald-200 p-0.5 rounded-l-lg text-center"
 							value="R$"
 							disabled
 						/>
 						<input
 							type="text"
-							class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
+							class="w-5/6 bg-white py-0.5 px-2 rounded-r-lg"
 							id="initialInvestiment"
 							placeholder="0.00"
 							required
+							inputmode="numeric"
 						/>
 					</div>
 				</div>
@@ -39,13 +40,13 @@
 					<div class="w-full flex">
 						<input
 							type="text"
-							class="w-1/6 bg-emerald-200 p-0.8 rounded-l-lg text-center"
+							class="w-1/6 bg-emerald-200 p-0.5 rounded-l-lg text-center"
 							value="R$"
 							disabled
 						/>
 						<input
 							type="text"
-							class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
+							class="w-5/6 bg-white py-0.5 px-2 rounded-r-lg"
 							id="additionalContributions"
 							placeholder="0.00"
 						/>
@@ -57,13 +58,13 @@
 					<div class="w-full flex">
 						<input
 							type="text"
-							class="w-2/3 bg-white py-0.8 px-2 rounded-l-lg"
+							class="w-2/3 bg-white py-0.5 px-2 rounded-l-lg"
 							id="timeAmount"
 							required
 						/>
 						<select
 							id="timeAmountPeriod"
-							class="w-1/3 bg-white p-0.8 rounded-r-lg border-l-2 border-emerald-600 text-center cursor-pointer hover:bg-emerald-950 hover:text-slate-200"
+							class="w-1/3 bg-white py-0.5 rounded-r-lg border-l-2 border-emerald-600 text-center cursor-pointer hover:bg-emerald-950 hover:text-slate-200"
 						>
 							<option value="monthly">Mensal</option>
 							<option value="yearly">Anual</option>
@@ -76,13 +77,13 @@
 					<div class="w-full flex">
 						<input
 							type="text"
-							class="w-1/6 bg-emerald-200 p-0.8 rounded-l-lg text-center"
+							class="w-1/6 bg-emerald-200 p-0.5 rounded-l-lg text-center"
 							value="%"
 							disabled
 						/>
 						<input
 							type="text"
-							class="w-1/2 bg-white py-0.8 px-2"
+							class="w-1/2 bg-white py-0.5 px-2"
 							name="returnRate"
 							id="returnRate"
 							placeholder="0%"
@@ -90,7 +91,7 @@
 						/>
 						<select
 							id="returnRatePeriod"
-							class="w-1/3 bg-white p-0.8 rounded-r-lg border-l-2 border-emerald-600 text-center hover:bg-emerald-950 hover:text-slate-200 cursor-pointer"
+							class="w-1/3 bg-white p-0.5 rounded-r-lg border-l-2 border-emerald-600 text-center hover:bg-emerald-950 hover:text-slate-200 cursor-pointer"
 						>
 							<option value="monthly">Mensal</option>
 							<option value="yearly">Anual</option>
@@ -103,13 +104,13 @@
 					<div class="w-full flex">
 						<input
 							type="text"
-							class="w-1/6 bg-emerald-200 p-0.8 rounded-l-lg text-center"
+							class="w-1/6 bg-emerald-200 p-0.5 rounded-l-lg text-center"
 							value="%"
 							disabled
 						/>
 						<input
 							type="text"
-							class="w-5/6 bg-white py-0.8 px-2 rounded-r-lg"
+							class="w-5/6 bg-white py-0.5 px-2 rounded-r-lg"
 							id="profitTax"
 							placeholder="0%"
 							required
@@ -126,6 +127,7 @@
 					Calcular
 				</button>
 				<button
+					type="button"
 					id="clearButton"
 					class="w-full font-bold py-1.5 cursor-pointer hover:bg-emerald-800 hover:text-slate-200 rounded-lg"
 				>
@@ -133,7 +135,7 @@
 				</button>
 			</div>
 		</aside>
-		<main class="col-span-2 w-full">
+		<main class="col-span-2 w-full h-dvh">
 			<!-- <section id="chartsContainer" class="h-full">
 				<div class="h-[36%] flex flex-col items-center pb-10">
 					<h2 class="font-bold text-lg">Resultado Final</h2>
@@ -146,7 +148,7 @@
 			</section> -->
 			<section id="tableContainer" class="h-full overflow-y-auto">
 				<h2 class="font-bold text-lg text-center">Resultados Mensais</h2>
-				<table id="tableResults" class="w-full max-h-full border border-separate"></table>
+				<table id="tableResults" class="w-full max-h-full border-separate"></table>
 			</section>
 		</main>
 		<script type="module" src="script.js"></script>
