@@ -135,21 +135,25 @@
 				</button>
 			</div>
 		</aside>
-		<main class="col-span-2 w-full h-dvh">
-			<!-- <section id="chartsContainer" class="h-full">
-				<div class="h-[36%] flex flex-col items-center pb-10">
-					<h2 class="font-bold text-lg">Resultado Final</h2>
-					<canvas id="finalDistribution"></canvas>
-				</div>
-				<div class="h-[56%] flex flex-col items-center">
-					<h2 class="font-bold text-lg">Progressão</h2>
-					<canvas id="progression"></canvas>
-				</div>
-			</section> -->
-			<section id="tableContainer" class="h-full overflow-y-auto">
-				<h2 class="font-bold text-lg text-center">Resultados Mensais</h2>
-				<table id="tableResults" class="w-full max-h-full border-separate"></table>
-			</section>
+		<main class="col-span-2 row-span-2 h-dvh relative">
+			<button id="slide-arrow-right" class="arrow-buttom right-3">&#8250</button>
+			<button id="slide-arrow-left" class="arrow-buttom left-3">&#8249</button>
+			<div id="carousel" class="h-full w-full flex overflow-x-auto">
+				<section id="chartsContainer" class="h-full basis-full shrink-0">
+					<div class="h-[36%] flex flex-col items-center pb-10">
+						<h2 class="font-bold text-lg">Resultado Final</h2>
+						<canvas id="finalDistribution"></canvas>
+					</div>
+					<div class="h-[56%] flex flex-col items-center">
+						<h2 class="font-bold text-lg">Progressão</h2>
+						<canvas id="progression"></canvas>
+					</div>
+				</section>
+				<section id="tableContainer" class="h-full overflow-y-auto basis-full shrink-0">
+					<h2 class="font-bold text-lg text-center">Resultados Mensais</h2>
+					<table id="tableResults" class="w-full max-h-full border-separate px-4"></table>
+				</section>
+			</div>
 		</main>
 		<script type="module" src="script.js"></script>
 	</body>
