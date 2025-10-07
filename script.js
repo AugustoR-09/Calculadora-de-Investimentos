@@ -1,5 +1,3 @@
-// Resolvi o problema da tabela com os numeros dando Nan, só falta formatar a tabela
-
 import { generateReturns } from "./src/investmentGoals.js";
 import Chart from "chart.js/auto";
 import { createTable } from "./src/table.js";
